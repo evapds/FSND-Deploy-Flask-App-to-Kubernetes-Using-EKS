@@ -2,9 +2,14 @@ apiVersion: v1
 data:
   mapRoles: |
     - groups:
-      - system:masters
-      rolearn: arn:aws:iam::236032548077:role/UdacityFlaskDeployCBKubectlRole
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::236032548077:role/eksctl-simple-jwt-api-nodegroup-n-NodeInstanceRole-1OXLNVRPSOKK5
+      username: system:node:{{EC2PrivateDNSName}}
+    - rolearn: arn:aws:iam::236032548077:role/UdacityFlaskDeployCBKubectlRole
       username: build
+      groups:
+      - system:masters
   mapUsers: |
     []
 kind: ConfigMap
